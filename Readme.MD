@@ -98,17 +98,14 @@ Perfect for headless Raspberry Pi setups, this monitor can be accessed from any 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/raspberry-pi-ultra-monitor.git
-cd raspberry-pi-ultra-monitor
+git clone https://github.com/awsdevop183/RaspberryPi-Monitor.git
+cd RaspberryPi-Monitor
 
 # Install dependencies
 pip install flask psutil
 
-# Make executable
-chmod +x clean_monitor.py
-
 # Run the monitor
-python3 clean_monitor.py
+python3 monitor.py
 ```
 
 ### Alternative Installation
@@ -126,7 +123,7 @@ pip install flask>=2.0.0 psutil>=5.8.0
 ### Starting the Monitor
 
 ```bash
-python3 clean_monitor.py
+python3 monitor.py
 ```
 
 You'll see output like:
@@ -182,7 +179,7 @@ After=network.target
 Type=simple
 User=pi
 WorkingDirectory=/home/pi/raspberry-pi-ultra-monitor
-ExecStart=/usr/bin/python3 /home/pi/raspberry-pi-ultra-monitor/clean_monitor.py
+ExecStart=/usr/bin/python3 /home/pi/raspberry-pi-ultra-monitor/monitor.py
 Restart=always
 RestartSec=5
 
@@ -202,7 +199,7 @@ sudo systemctl status rpi-monitor.service
 
 ### Customizing Port
 
-To change the default port (8080), modify the last line in `clean_monitor.py`:
+To change the default port (8080), modify the last line in `monitor.py`:
 
 ```python
 app.run(host='0.0.0.0', port=YOUR_PORT, debug=False)
@@ -240,7 +237,7 @@ System Metrics → psutil → Python Processing → Flask API → JSON → JavaS
 ### Project Structure
 ```
 raspberry-pi-ultra-monitor/
-├── clean_monitor.py          # Main application file
+├── monitor.py          # Main application file
 ├── requirements.txt          # Python dependencies
 ├── README.md                # This file
 ├── LICENSE                  # MIT License
