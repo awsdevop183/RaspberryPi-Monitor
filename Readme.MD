@@ -166,22 +166,22 @@ Create a systemd service for automatic startup:
 
 ```bash
 # Create service file
-sudo nano /etc/systemd/system/rpi-monitor.service
+sudo nano /etc/systemd/system/monitor.service
 ```
 
 Add the following content:
 ```ini
 [Unit]
-Description=Raspberry Pi Ultra Monitor
+Description=RPi Web Monitor
 After=network.target
 
 [Service]
 Type=simple
-User=pi
-WorkingDirectory=/home/pi/raspberry-pi-ultra-monitor
-ExecStart=/usr/bin/python3 /home/pi/raspberry-pi-ultra-monitor/monitor.py
+User=madhu
+WorkingDirectory=/home/madhu/docker-monitor
+ExecStart=/home/madhu/docker-monitor/venv/bin/python /home/madhu/docker-monitor/monitor.py
 Restart=always
-RestartSec=5
+Environment=PYTHONUNBUFFERED=1
 
 [Install]
 WantedBy=multi-user.target
